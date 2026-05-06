@@ -305,7 +305,14 @@
     border-bottom: 1px solid var(--gray-200);
     transition: background 0.25s ease;
   }
-  .pf-mark svg { width: 90px; height: 90px; }
+  .pf-mark svg { width: 64%; height: 64%; max-width: 180px; max-height: 180px; }
+  .pf-mark img {
+    width: 78%; height: 78%;
+    max-width: 220px; max-height: 220px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  .pf-tile:hover .pf-mark img { transform: scale(1.04); }
   .pf-mark-num {
     position: absolute; top: 14px; left: 14px;
     font-family: var(--mono); font-size: 10px;
@@ -389,6 +396,7 @@
     background: var(--coral-soft); border-color: var(--coral);
   }
   .team-avatar svg { width: 100%; height: 100%; }
+  .team-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
   .team-name {
     font-family: var(--serif); font-size: 36px;
     letter-spacing: -0.02em; margin-bottom: 4px; font-weight: 400;
@@ -693,22 +701,21 @@
 
   <div class="pf-grid stagger">
 
-    <!-- 01 — Co:brand -->
+    <!-- 01 — Cobrand -->
     <div class="pf-tile reveal" style="--i:0">
       <div class="pf-mark">
         <span class="pf-mark-num">01</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle class="pf-mark-stroke" cx="50" cy="50" r="40" fill="none" stroke="#0A0A0A" stroke-width="1"/>
-          <path class="pf-mark-stroke" d="M30 55 L42 55 L48 35 L58 75 L64 55 L72 55" stroke="#0A0A0A" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
-        </svg>
+        <img src="logos/cobrand.webp" alt="Cobrand logo" loading="lazy">
       </div>
       <div class="pf-info">
-        <div class="pf-name">Co:brand</div>
-        <div class="pf-desc">AI-powered distribution and promotion for music labels, artists, and creators.</div>
-        <div class="pf-tag">MUSIC · MARKETING AI</div>
+        <div class="pf-name">Cobrand</div>
+        <div class="pf-desc">Music marketing &amp; distribution platform.</div>
+        <div class="pf-tag">TORONTO</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/patrick-quaggin-smith-9060b868" target="_blank" rel="noopener">Patrick Quaggin-Smith <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://ca.linkedin.com/in/lauriermantel" target="_blank" rel="noopener">Laurier Mantel <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://ca.linkedin.com/in/benjamin-macdonald" target="_blank" rel="noopener">Ben McDonald <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
       </div>
     </div>
@@ -717,40 +724,35 @@
     <div class="pf-tile reveal" style="--i:1">
       <div class="pf-mark">
         <span class="pf-mark-num">02</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path class="pf-mark-stroke" d="M50 18 C30 38 22 56 30 70 C38 84 62 84 70 70 C78 56 70 38 50 18 Z" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
-          <circle class="pf-mark-fill" cx="50" cy="62" r="3" fill="#0A0A0A"/>
-        </svg>
+        <img src="logos/liquid.jpeg" alt="Liquid logo" loading="lazy">
       </div>
       <div class="pf-info">
         <div class="pf-name">Liquid</div>
-        <div class="pf-desc">Cookieless rewards — connecting brand and consumer data into personalized offers.</div>
-        <div class="pf-tag">FINTECH · MARTECH</div>
+        <div class="pf-desc">Financial data infrastructure for the post-cookie economy.</div>
+        <div class="pf-tag">MIAMI</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">Lucas Loeffler <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">Mark Baran <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/lucas-loeffler-25887a24/" target="_blank" rel="noopener">Lucas Loeffler <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/mebaran/" target="_blank" rel="noopener">Mark Baran <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
       </div>
     </div>
 
-    <!-- 03 — Handoffs -->
+    <!-- 03 — Lumopath -->
     <div class="pf-tile reveal" style="--i:2">
       <div class="pf-mark">
         <span class="pf-mark-num">03</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle class="pf-mark-stroke" cx="32" cy="50" r="14" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
-          <circle class="pf-mark-stroke" cx="68" cy="50" r="14" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
-          <line class="pf-mark-stroke" x1="46" y1="50" x2="54" y2="50" stroke="#0A0A0A" stroke-width="1.2"/>
-        </svg>
+        <img src="logos/lumopath.jpeg" alt="Lumopath logo" loading="lazy">
       </div>
       <div class="pf-info">
-        <div class="pf-name">Handoffs</div>
-        <div class="pf-desc">[ One-line description from your site ]</div>
-        <div class="pf-tag">SERVICES · AI</div>
+        <div class="pf-name">Lumopath</div>
+        <div class="pf-desc">AI for customer success and growth.</div>
+        <div class="pf-tag">LOS ANGELES</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/orikonstantin/" target="_blank" rel="noopener">Ori Konstantin <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/mikey-renan-40202b58/" target="_blank" rel="noopener">Mikey Renan <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <span class="pf-founder-link" style="cursor: default;">Yuta Morinaga</span>
         </div>
       </div>
     </div>
@@ -759,18 +761,15 @@
     <div class="pf-tile reveal" style="--i:3">
       <div class="pf-mark">
         <span class="pf-mark-num">04</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <polygon class="pf-mark-stroke" points="50,15 85,50 50,85 15,50" fill="none" stroke="#0A0A0A" stroke-width="1"/>
-          <polygon class="pf-mark-fill" points="50,32 68,50 50,68 32,50" fill="#0A0A0A"/>
-        </svg>
+        <img src="logos/gigi.jpeg" alt="Gigi logo" loading="lazy">
       </div>
       <div class="pf-info">
         <div class="pf-name">Gigi</div>
-        <div class="pf-desc">[ One-line description from your site ]</div>
-        <div class="pf-tag">CONSUMER</div>
+        <div class="pf-desc">Clean-room infrastructure for connected TV.</div>
+        <div class="pf-tag">TORONTO</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/epsteinadam/" target="_blank" rel="noopener">Adam Epstein <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
       </div>
     </div>
@@ -779,38 +778,32 @@
     <div class="pf-tile reveal" style="--i:4">
       <div class="pf-mark">
         <span class="pf-mark-num">05</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect class="pf-mark-stroke" x="20" y="28" width="60" height="44" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
-          <path class="pf-mark-stroke" d="M20 28 L50 56 L80 28" stroke="#0A0A0A" stroke-width="1.2" fill="none"/>
-        </svg>
+        <img src="logos/zaymo.avif" alt="Zaymo logo" loading="lazy">
       </div>
       <div class="pf-info">
         <div class="pf-name">Zaymo</div>
-        <div class="pf-desc">[ One-line description from your site ]</div>
-        <div class="pf-tag">COMMERCE · INFRA</div>
+        <div class="pf-desc">Commerce layered directly into email.</div>
+        <div class="pf-tag">UTAH</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/bricedouglas/" target="_blank" rel="noopener">Brice Douglas <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
       </div>
     </div>
 
-    <!-- 06 — Double -->
+    <!-- 06 — Armilla -->
     <div class="pf-tile reveal" style="--i:5">
       <div class="pf-mark">
         <span class="pf-mark-num">06</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle class="pf-mark-stroke" cx="40" cy="50" r="22" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
-          <circle class="pf-mark-stroke" cx="60" cy="50" r="22" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
-        </svg>
+        <img src="logos/armilla.jpeg" alt="Armilla logo" loading="lazy">
       </div>
       <div class="pf-info">
-        <div class="pf-name">Double</div>
-        <div class="pf-desc">[ One-line description from your site ]</div>
-        <div class="pf-tag">CONSUMER · FINTECH</div>
+        <div class="pf-name">Armilla</div>
+        <div class="pf-desc">Insurance for AI.</div>
+        <div class="pf-tag">BAY AREA</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/karthikramki/" target="_blank" rel="noopener">Karthik Ramakrishnan <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
       </div>
     </div>
@@ -819,121 +812,72 @@
     <div class="pf-tile reveal" style="--i:6">
       <div class="pf-mark">
         <span class="pf-mark-num">07</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <polygon class="pf-mark-stroke" points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
-          <line class="pf-mark-stroke" x1="50" y1="18" x2="50" y2="82" stroke="#0A0A0A" stroke-width="1"/>
-          <line class="pf-mark-stroke" x1="22" y1="34" x2="78" y2="66" stroke="#0A0A0A" stroke-width="1"/>
-          <line class="pf-mark-stroke" x1="78" y1="34" x2="22" y2="66" stroke="#0A0A0A" stroke-width="1"/>
-        </svg>
+        <img src="logos/nuvo.jpeg" alt="Nuvo logo" loading="lazy">
       </div>
       <div class="pf-info">
         <div class="pf-name">Nuvo</div>
-        <div class="pf-desc">[ One-line description from your site ]</div>
-        <div class="pf-tag">FINTECH · AI</div>
+        <div class="pf-desc">Trade credit operating system for B2B commerce.</div>
+        <div class="pf-tag">BAY AREA</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/sidmalladi/" target="_blank" rel="noopener">Sid Malladi <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/rameez-remsudeen/" target="_blank" rel="noopener">Rameez Remsudeen <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
       </div>
     </div>
 
-    <!-- 08 — Suppli -->
+    <!-- 08 — Gain -->
     <div class="pf-tile reveal" style="--i:7">
       <div class="pf-mark">
         <span class="pf-mark-num">08</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect class="pf-mark-stroke" x="20" y="20" width="60" height="60" fill="none" stroke="#0A0A0A" stroke-width="1"/>
-          <line class="pf-mark-stroke" x1="20" y1="40" x2="80" y2="40" stroke="#0A0A0A" stroke-width="1"/>
-          <circle class="pf-mark-fill" cx="68" cy="60" r="4" fill="#0A0A0A"/>
-        </svg>
+        <img src="logos/gain.jpeg" alt="Gain logo" loading="lazy">
       </div>
       <div class="pf-info">
-        <div class="pf-name">Suppli</div>
-        <div class="pf-desc">[ One-line description from your site ]</div>
-        <div class="pf-tag">FINTECH · CONSTRUCTION</div>
+        <div class="pf-name">Gain</div>
+        <div class="pf-desc">Chairside AI agent for clinical documentation.</div>
+        <div class="pf-tag">BAY AREA</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/pranavmaddi/" target="_blank" rel="noopener">Pranav Maddi <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/charles-jing-science/" target="_blank" rel="noopener">Charles Jin <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
       </div>
     </div>
 
-    <!-- 09 — Realm Alliance -->
+    <!-- 09 — Suppli -->
     <div class="pf-tile reveal" style="--i:8">
       <div class="pf-mark">
         <span class="pf-mark-num">09</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path class="pf-mark-stroke" d="M50 12 L80 26 V52 C80 70 67 84 50 90 C33 84 20 70 20 52 V26 Z" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
-          <path class="pf-mark-stroke" d="M37 50 L46 60 L65 40" stroke="#0A0A0A" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-        </svg>
+        <img src="logos/suppli.jpeg" alt="Suppli logo" loading="lazy">
       </div>
       <div class="pf-info">
-        <div class="pf-name">Realm <em>Alliance</em></div>
-        <div class="pf-desc">AI-enabled unified security platform for critical industries.</div>
-        <div class="pf-tag">SECURITY · AI</div>
+        <div class="pf-name">Suppli</div>
+        <div class="pf-desc">Payments infrastructure for construction suppliers.</div>
+        <div class="pf-tag">AUSTIN, TX</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/ryan-ayers-5199089a/" target="_blank" rel="noopener">Ryan Ayers <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/thanasis-skafidas-177b152b/" target="_blank" rel="noopener">Thanasis Skafidas <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
       </div>
     </div>
 
-    <!-- 10 — Fluidic ML -->
+    <!-- 10 — Realm -->
     <div class="pf-tile reveal" style="--i:9">
       <div class="pf-mark">
         <span class="pf-mark-num">10</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="none" class="pf-mark-stroke" stroke="#0A0A0A" stroke-width="1.2">
-            <path d="M20 70 Q35 50 50 70 Q65 90 80 70" />
-            <path d="M20 50 Q35 30 50 50 Q65 70 80 50" />
-            <path d="M20 30 Q35 10 50 30 Q65 50 80 30" />
-          </g>
-        </svg>
+        <img src="logos/realm.jpeg" alt="Realm logo" loading="lazy">
       </div>
       <div class="pf-info">
-        <div class="pf-name">Fluidic <em>ML</em></div>
-        <div class="pf-desc">[ One-line description from your site ]</div>
-        <div class="pf-tag">ML · INFRA</div>
+        <div class="pf-name">Realm</div>
+        <div class="pf-desc">Unified security platform for critical industries.</div>
+        <div class="pf-tag">AUSTIN, TX</div>
         <div class="pf-founders">
           <span class="pf-founders-label">FOUNDED BY</span>
-          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/eugenemarinelli/" target="_blank" rel="noopener">Eugene Marinelli <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/mkrecny/" target="_blank" rel="noopener">Myles Recny <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="https://www.linkedin.com/in/arjun-rohlfing-das/" target="_blank" rel="noopener">Arjun Rohlfing-Das <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
         </div>
-      </div>
-    </div>
-
-    <!-- 11 — Stealth -->
-    <div class="pf-tile reveal" style="--i:10">
-      <div class="pf-mark">
-        <span class="pf-mark-num">11</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect class="pf-mark-stroke" x="20" y="20" width="60" height="60" fill="none" stroke="#0A0A0A" stroke-width="1" stroke-dasharray="3 3"/>
-          <text x="50" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" fill="#0A0A0A" font-weight="500">?</text>
-        </svg>
-      </div>
-      <div class="pf-info">
-        <div class="pf-name"><em>Stealth</em></div>
-        <div class="pf-desc">A handful of companies still in stealth.</div>
-        <div class="pf-tag">UNANNOUNCED</div>
-        <div class="pf-founders">
-          <span class="pf-founders-label">FOUNDED BY</span>
-          <span style="color:var(--gray-300);">— — —</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 12 — Link to full portfolio -->
-    <div class="pf-tile reveal" style="--i:11">
-      <div class="pf-mark" style="background:var(--coral-soft);">
-        <span class="pf-mark-num">→</span>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <line x1="20" y1="50" x2="80" y2="50" stroke="#FF3550" stroke-width="1.4"/>
-          <polyline points="64,34 80,50 64,66" fill="none" stroke="#FF3550" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="pf-info">
-        <div class="pf-name" style="color:var(--coral);">More</div>
-        <div class="pf-desc" style="color:var(--gray-700);">Following on with companies cycle to cycle.</div>
-        <div class="pf-tag" style="color:var(--coral);">VIEW PORTFOLIO →</div>
       </div>
     </div>
 
@@ -953,45 +897,33 @@
 
       <div class="team-cell reveal" style="--i:0">
         <div class="team-avatar">
-          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="60" cy="60" r="58" fill="none" stroke="#CFCCCC" stroke-width="0.5"/>
-            <circle cx="60" cy="48" r="18" fill="none" stroke="#0A0A0A" stroke-width="1"/>
-            <path d="M22 100 C30 80 45 72 60 72 C75 72 90 80 98 100" fill="none" stroke="#0A0A0A" stroke-width="1"/>
-            <circle cx="60" cy="48" r="3" fill="#FF3550"/>
-          </svg>
+          <img class="team-photo" src="team/rosco.jpeg" alt="Rosco Hill" loading="lazy">
         </div>
         <div>
           <div class="team-name-row">
             <div class="team-name">Rosco Hill</div>
-            <a class="team-linkedin" href="#" target="_blank" rel="noopener" aria-label="Rosco Hill on LinkedIn">
+            <a class="team-linkedin" href="https://www.linkedin.com/in/roscohill/" target="_blank" rel="noopener" aria-label="Rosco Hill on LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg>
             </a>
           </div>
-          <div class="team-role">GENERAL PARTNER · NYC / TORONTO</div>
-          <div class="team-bio">Operator with billion-dollar outcomes. Co-founded Perpetua (8-figure acquisition); on the early team at Blend ($4B IPO) and Palantir ($20B IPO). Was Quant and Head of Lab at Clarium Capital before turning operator-investor.</div>
-          <div class="team-built">PREV: <span>Perpetua</span> · <span>Blend</span> · <span>Palantir</span> · <span>Clarium</span> · <span>Waterloo CS</span></div>
+          <div class="team-role">FOUNDER · NEW YORK</div>
+          <div class="team-bio">Entrepreneur and operator. Early team member at Palantir. Founder of Blend and Perpetua. Partners with founders from inception through scale across product, talent, capital, and strategy.</div>
         </div>
       </div>
 
       <div class="team-cell reveal" style="--i:1">
         <div class="team-avatar">
-          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="60" cy="60" r="58" fill="none" stroke="#CFCCCC" stroke-width="0.5"/>
-            <rect x="42" y="34" width="36" height="36" fill="none" stroke="#0A0A0A" stroke-width="1" transform="rotate(45 60 52)"/>
-            <path d="M28 102 C36 84 48 78 60 78 C72 78 84 84 92 102" fill="none" stroke="#0A0A0A" stroke-width="1"/>
-            <circle cx="60" cy="52" r="3" fill="#FF3550"/>
-          </svg>
+          <img class="team-photo" src="team/zafar.jpeg" alt="Zafar Mirzaliev" loading="lazy">
         </div>
         <div>
           <div class="team-name-row">
             <div class="team-name">Zafar Mirzaliev</div>
-            <a class="team-linkedin" href="#" target="_blank" rel="noopener" aria-label="Zafar Mirzaliev on LinkedIn">
+            <a class="team-linkedin" href="https://www.linkedin.com/in/mirzaliev/" target="_blank" rel="noopener" aria-label="Zafar Mirzaliev on LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg>
             </a>
           </div>
-          <div class="team-role">GENERAL PARTNER · NYC / TORONTO</div>
-          <div class="team-bio">Family office and growth-fund investor turned operator-investor. Advised the CEO at Perpetua. Wrote angel checks across AI, SaaS, and fintech. Brings the LP bench and a sharp eye for what actually compounds.</div>
-          <div class="team-built">PREV: <span>Family office</span> · <span>Betaworks</span> · <span>STACKED</span> · <span>Parsons</span></div>
+          <div class="team-role">CO-FOUNDER · NEW YORK</div>
+          <div class="team-bio">Investor and operator. Background in early-stage investing at Betaworks and a single-family office. Works closely with founders on operations, GTM, capital formation, and long-term positioning.</div>
         </div>
       </div>
 
