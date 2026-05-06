@@ -114,11 +114,15 @@
   }
   .hero-content { position: relative; z-index: 2; width: 100%; }
   .hero-grid {
-    display: grid; grid-template-columns: 1.7fr 0.9fr;
-    gap: 48px; align-items: center;
+    position: relative;
+    width: 100%;
+  }
+  .hero-grid > div:first-child {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
   }
   @media (max-width: 1020px) {
-    .hero-grid { grid-template-columns: 1fr; }
     .hero-graphic-wrap { display: none; }
   }
   .hero-meta {
@@ -138,10 +142,10 @@
 
   .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(44px, 7.4vw, 108px);
-    line-height: 1.02; letter-spacing: -0.025em; font-weight: 400;
+    font-size: clamp(44px, 6.6vw, 96px);
+    line-height: 1.04; letter-spacing: -0.025em; font-weight: 400;
     margin-bottom: 48px;
-    max-width: 100%;
+    max-width: 1180px;
   }
   .hero h1 .word { display: inline-block; overflow: hidden; vertical-align: top; }
   .hero h1 .word > span {
@@ -168,9 +172,15 @@
     background: var(--coral); animation: pulse 1.6s ease-in-out infinite;
   }
 
-  /* Hero side graphic — parallax tilt on cursor */
+  /* Hero side graphic — absolute, sits behind text on right */
   .hero-graphic-wrap {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: clamp(320px, 32vw, 460px);
+    z-index: 1;
+    pointer-events: auto;
     perspective: 1000px;
   }
   .hero-graphic {
