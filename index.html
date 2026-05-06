@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>co:build ventures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF7F7;
+    --cream-deep: #F5ECEC;
+    --ink: #0A0A0A;
+    --gray-700: #424242;
+    --gray-500: #909090;
+    --gray-300: #CFCCCC;
+    --gray-200: #E5E5E5;
+    --coral: #FF3550;
+    --coral-soft: #FFE6EA;
+    --serif: 'Instrument Serif', 'Times New Roman', serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Menlo', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream); color: var(--ink);
+    font-family: var(--sans); font-weight: 400; line-height: 1.55;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--coral); color: var(--cream); }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; }
+  @media (max-width: 720px) { .wrap { padding: 0 20px; } }
+
+  /* === Header === */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255, 247, 247, 0.78);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between; height: 68px;
+  }
+  .wordmark {
+    display: flex; align-items: baseline;
+    font-family: var(--sans); font-weight: 600; font-size: 18px;
+    letter-spacing: -0.02em; color: var(--ink); text-decoration: none; text-transform: lowercase;
+  }
+  .wordmark .colon { color: var(--coral); margin: 0 1px; transform: translateY(-1px); display: inline-block; }
+  .wordmark .ventures {
+    font-family: var(--mono); font-weight: 400; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-500);
+    margin-left: 12px; border-left: 1px solid var(--gray-300); padding-left: 12px;
+  }
+  nav ul {
+    display: flex; gap: 32px; list-style: none;
+    font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  nav a { color: var(--gray-700); text-decoration: none; transition: color 0.2s ease; }
+  nav a:hover { color: var(--coral); }
+  .nav-cta {
+    color: var(--coral) !important; border: 1px solid var(--coral);
+    padding: 8px 14px; border-radius: 100px; transition: all 0.2s ease;
+  }
+  .nav-cta:hover { background: var(--coral); color: var(--cream) !important; }
+  @media (max-width: 900px) {
+    nav ul { gap: 18px; font-size: 10px; }
+    .wordmark .ventures { display: none; }
+  }
+
+  /* === Marquee === */
+  .marquee {
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    overflow: hidden; background: var(--cream); position: relative; z-index: 5;
+  }
+  .marquee-track {
+    display: flex; gap: 56px; padding: 16px 0; width: max-content;
+    animation: marquee-scroll 60s linear infinite; white-space: nowrap;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  .marquee-item {
+    font-family: var(--mono); font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--ink);
+    display: flex; align-items: center; gap: 56px;
+  }
+  .marquee-item .star { color: var(--coral); font-size: 14px; line-height: 1; }
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* === Hero — interactive flow field === */
+  .hero {
+    position: relative; min-height: 100vh; padding: 160px 0 100px;
+    display: flex; align-items: center; overflow: hidden;
+    cursor: crosshair;
+  }
+  .hero-canvas {
+    position: absolute; inset: 0; z-index: 0;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  /* edge fade so flow field doesn't compete with text */
+  .hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(90deg, var(--cream) 0%, transparent 22%, transparent 78%, var(--cream) 100%),
+      radial-gradient(ellipse at 30% 50%, transparent 0%, rgba(255, 247, 247, 0.5) 60%, var(--cream) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; width: 100%; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  @media (max-width: 1020px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-graphic-wrap { display: none; }
+  }
+  .hero-meta {
+    font-family: var(--mono); font-size: 11px; color: var(--gray-700);
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 48px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--coral);
+    box-shadow: 0 0 12px rgba(255, 53, 80, 0.55);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.45; }
+  }
+  .meta-divider { color: var(--gray-300); }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(48px, 8vw, 124px);
+    line-height: 0.95; letter-spacing: -0.025em; font-weight: 400;
+    margin-bottom: 48px;
+  }
+  .hero h1 .word { display: inline-block; overflow: hidden; vertical-align: top; }
+  .hero h1 .word > span {
+    display: inline-block; transform: translateY(110%);
+    animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes rise { to { transform: translateY(0); } }
+  .hero h1 em { font-style: italic; color: var(--gray-500); }
+  .hero h1 .accent { color: var(--coral); font-style: italic; }
+
+  .hero-tagline {
+    font-size: 18px; line-height: 1.55; color: var(--ink);
+    max-width: 560px; padding-top: 28px; border-top: 1px solid var(--gray-200);
+  }
+
+  .hero-cursor-hint {
+    margin-top: 28px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--gray-500); letter-spacing: 0.14em;
+    text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+  }
+  .hero-cursor-hint .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--coral); animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  /* Hero side graphic — parallax tilt on cursor */
+  .hero-graphic-wrap {
+    position: relative;
+    perspective: 1000px;
+  }
+  .hero-graphic {
+    width: 100%; height: auto; display: block;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .hero-graphic .spin-slow {
+    transform-origin: 250px 250px; animation: spin 60s linear infinite;
+  }
+  .hero-graphic .spin-rev {
+    transform-origin: 250px 250px; animation: spin 80s linear infinite reverse;
+  }
+  .hero-graphic .pulse-ring {
+    transform-origin: 250px 250px; animation: ringPulse 4s ease-in-out infinite;
+  }
+  .hero-graphic .float-1 { animation: float 7s ease-in-out infinite; transform-origin: 250px 250px; }
+  .hero-graphic .float-2 { animation: float 9s ease-in-out infinite reverse; transform-origin: 250px 250px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes ringPulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.06); opacity: 0.7; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* === Section primitives === */
+  section { padding: 130px 0; position: relative; }
+  .section-header {
+    display: flex; align-items: baseline; gap: 24px;
+    margin-bottom: 72px; padding-bottom: 24px;
+    border-bottom: 1px solid var(--gray-200); position: relative;
+  }
+  .section-header::after {
+    content: ''; position: absolute; left: 0; bottom: -1px;
+    width: 0; height: 1px; background: var(--coral);
+    transition: width 1.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .section-header.in::after { width: 100%; }
+  .section-num {
+    font-family: var(--mono); font-size: 11px; color: var(--coral);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .section-label {
+    font-family: var(--mono); font-size: 11px; color: var(--gray-700);
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .section-spacer {
+    flex: 1; height: 1px; background: var(--gray-200);
+    margin: 0 12px; align-self: center;
+  }
+
+  /* === Thesis with subtle flow background === */
+  .thesis {
+    border-top: 1px solid var(--gray-200); position: relative; overflow: hidden;
+  }
+  .thesis-canvas {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    opacity: 0.5;
+  }
+  .thesis .wrap { position: relative; z-index: 1; }
+  .thesis-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px;
+    align-items: center;
+  }
+  .thesis-headline {
+    font-family: var(--serif); font-size: clamp(40px, 5vw, 72px);
+    line-height: 1.04; letter-spacing: -0.02em; font-weight: 400;
+    margin-bottom: 32px;
+  }
+  .thesis-headline em { font-style: italic; color: var(--gray-500); }
+  .thesis-headline .accent { color: var(--coral); font-style: italic; }
+  .thesis-tagline {
+    font-size: 16px; line-height: 1.6; color: var(--gray-700);
+    max-width: 480px; padding-top: 24px; border-top: 1px solid var(--gray-200);
+  }
+  .innovation-chart { width: 100%; height: auto; }
+  .innovation-chart text { font-family: var(--mono); }
+  .innovation-chart .pathline {
+    stroke-dasharray: 2400; stroke-dashoffset: 2400;
+    animation: drawLine 3s ease-out forwards 0.3s;
+  }
+  @keyframes drawLine { to { stroke-dashoffset: 0; } }
+  @media (max-width: 1020px) {
+    .thesis-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* === Portfolio TILE GRID === */
+  .portfolio { border-top: 1px solid var(--gray-200); }
+  .pf-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border-top: 1px solid var(--gray-200);
+  }
+  .pf-tile {
+    background: var(--cream); padding: 0;
+    border-right: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    aspect-ratio: 1 / 1.15;
+    display: flex; flex-direction: column;
+    cursor: pointer; position: relative;
+    transition: background 0.25s ease;
+  }
+  .pf-tile:hover { background: var(--cream-deep); }
+  .pf-tile:hover .pf-mark { background: var(--coral-soft); }
+  .pf-tile:hover .pf-mark svg .pf-mark-fill { fill: var(--coral); }
+  .pf-tile:hover .pf-mark svg .pf-mark-stroke { stroke: var(--coral); }
+  .pf-tile:nth-child(4n) { border-right: none; }
+  .pf-mark {
+    height: 56%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--cream-deep); position: relative;
+    border-bottom: 1px solid var(--gray-200);
+    transition: background 0.25s ease;
+  }
+  .pf-mark svg { width: 90px; height: 90px; }
+  .pf-mark-num {
+    position: absolute; top: 14px; left: 14px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--gray-500); letter-spacing: 0.14em;
+  }
+  .pf-info { padding: 18px 18px 20px; flex: 1; display: flex; flex-direction: column; }
+  .pf-name {
+    font-family: var(--serif); font-size: 30px;
+    line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--ink); font-weight: 400; margin-bottom: 6px;
+  }
+  .pf-name em { font-style: italic; color: var(--gray-500); font-size: 18px; }
+  .pf-desc {
+    font-size: 12.5px; color: var(--gray-700); line-height: 1.4;
+    margin-bottom: auto;
+  }
+  .pf-tag {
+    font-family: var(--mono); font-size: 9px; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    padding-top: 10px; margin-top: 10px;
+    border-top: 1px dashed var(--gray-300);
+  }
+  .pf-founders {
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed var(--gray-300);
+    font-family: var(--mono); font-size: 9px;
+    color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.12em;
+    line-height: 1.4;
+  }
+  .pf-founders-label {
+    color: var(--gray-500); margin-right: 8px;
+  }
+  .pf-founder-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--ink); text-decoration: none;
+    transition: color 0.2s ease;
+    margin-right: 8px;
+  }
+  .pf-founder-link:hover { color: var(--coral); }
+  .pf-founder-link:hover svg { color: var(--coral); }
+  .pf-founder-link svg {
+    width: 11px; height: 11px; color: var(--gray-500);
+    transition: color 0.2s ease;
+  }
+  .pf-founder-link::after { content: ''; }
+  @media (max-width: 1020px) {
+    .pf-grid { grid-template-columns: repeat(2, 1fr); }
+    .pf-tile:nth-child(4n) { border-right: 1px solid var(--gray-200); }
+    .pf-tile:nth-child(2n) { border-right: none; }
+  }
+  @media (max-width: 600px) {
+    .pf-grid { grid-template-columns: 1fr; }
+    .pf-tile { aspect-ratio: auto; border-right: none !important; }
+  }
+  /* Tiles slightly taller now that founders row was added */
+  .pf-tile { aspect-ratio: 1 / 1.28; }
+  .pf-mark { height: 50%; }
+
+  /* === Team === */
+  .team { border-top: 1px solid var(--gray-200); background: var(--cream-deep); }
+  .team-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: var(--gray-200);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .team-cell {
+    background: var(--cream); padding: 40px;
+    display: grid; grid-template-columns: 120px 1fr; gap: 28px;
+    align-items: start;
+  }
+  .team-avatar {
+    width: 120px; height: 120px;
+    background: var(--cream-deep);
+    border: 1px solid var(--gray-200);
+    border-radius: 50%; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .team-cell:hover .team-avatar {
+    background: var(--coral-soft); border-color: var(--coral);
+  }
+  .team-avatar svg { width: 100%; height: 100%; }
+  .team-name {
+    font-family: var(--serif); font-size: 36px;
+    letter-spacing: -0.02em; margin-bottom: 4px; font-weight: 400;
+  }
+  .team-role {
+    font-family: var(--mono); font-size: 10px; color: var(--coral);
+    text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 18px;
+  }
+  .team-bio {
+    font-size: 13.5px; line-height: 1.55; color: var(--gray-700);
+    margin-bottom: 16px;
+  }
+  .team-built {
+    font-family: var(--mono); font-size: 9px; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    border-top: 1px dashed var(--gray-300); padding-top: 12px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .team-built span { color: var(--ink); font-weight: 500; }
+  .team-name-row {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 4px;
+  }
+  .team-linkedin {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px;
+    border: 1px solid var(--gray-300); border-radius: 4px;
+    color: var(--gray-500); transition: all 0.2s ease;
+  }
+  .team-linkedin:hover {
+    color: var(--coral); border-color: var(--coral);
+  }
+  .team-linkedin svg { width: 11px; height: 11px; }
+  @media (max-width: 720px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .team-cell { grid-template-columns: 1fr; gap: 20px; }
+    .team-avatar { width: 80px; height: 80px; }
+  }
+
+  /* === Contact === */
+  .contact {
+    border-top: 1px solid var(--gray-200);
+    background: var(--ink); color: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .contact-canvas {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    opacity: 0.65;
+  }
+  .contact .wrap { position: relative; z-index: 1; }
+  .contact .section-num { color: var(--coral); }
+  .contact .section-label { color: var(--gray-300); }
+  .contact .section-spacer { background: var(--gray-700); }
+  .contact .section-header { border-bottom-color: var(--gray-700); }
+  .contact .section-header::after { background: var(--coral); }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    gap: 32px; align-items: end;
+  }
+  .contact h2 {
+    grid-column: 1 / span 9;
+    font-family: var(--serif);
+    font-size: clamp(40px, 5.6vw, 84px);
+    line-height: 1.02; letter-spacing: -0.025em; font-weight: 400;
+  }
+  .contact h2 em { color: var(--gray-500); font-style: italic; }
+  .contact h2 .accent { color: var(--coral); font-style: italic; }
+  .contact-email {
+    grid-column: 1 / span 6;
+    margin-top: 48px; font-family: var(--mono); font-size: 14px;
+  }
+  .contact-email-label {
+    color: var(--gray-500); text-transform: uppercase;
+    letter-spacing: 0.12em; font-size: 10px; margin-bottom: 12px;
+  }
+  .contact-email a {
+    color: var(--coral); text-decoration: none;
+    border-bottom: 1px solid rgba(255, 53, 80, 0.4);
+    padding-bottom: 4px; transition: opacity 0.2s ease; word-break: break-all;
+  }
+  .contact-email a:hover { opacity: 0.7; }
+  @media (max-width: 900px) {
+    .contact h2, .contact-email { grid-column: 1 / -1; }
+  }
+
+  /* === Footer === */
+  footer {
+    background: var(--ink); color: var(--cream);
+    padding: 56px 0 32px;
+    border-top: 1px solid var(--gray-700);
+  }
+  .footer-grid {
+    display: flex; flex-wrap: wrap; gap: 32px;
+    justify-content: space-between; align-items: end;
+    margin-bottom: 40px;
+  }
+  .footer-wordmark {
+    font-family: var(--sans); font-weight: 600; font-size: 22px;
+    letter-spacing: -0.02em; text-transform: lowercase; margin-bottom: 6px;
+  }
+  .footer-wordmark .colon { color: var(--coral); }
+  .footer-tag {
+    font-family: var(--mono); font-size: 11px; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .footer-links {
+    display: flex; gap: 28px; list-style: none;
+    font-family: var(--mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .footer-links a {
+    color: var(--gray-300); text-decoration: none; transition: color 0.2s ease;
+  }
+  .footer-links a:hover { color: var(--coral); }
+  .footer-bottom {
+    border-top: 1px solid var(--gray-700); padding-top: 20px;
+    font-family: var(--mono); font-size: 10px; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  /* === Reveal === */
+  .reveal { opacity: 0; transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .stagger > .reveal { transition-delay: calc(var(--i, 0) * 70ms); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============= HEADER ============= -->
+<header>
+  <div class="wrap header-inner">
+    <a href="#" class="wordmark">co<span class="colon">:</span>build<span class="ventures">VENTURES</span></a>
+    <nav>
+      <ul>
+        <li><a href="#thesis">Thesis</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact" class="nav-cta">[ Build with us ]</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ============= HERO ============= -->
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="wrap hero-content">
+    <div class="hero-grid">
+
+      <div>
+        <div class="hero-meta">
+          <span class="live-dot"></span>
+          <span>OPERATOR-LED CAPITAL</span>
+          <span class="meta-divider">/</span>
+          <span>NEW YORK</span>
+        </div>
+
+        <h1>
+          <span class="word"><span style="animation-delay:.05s">We</span></span>
+          <span class="word"><span style="animation-delay:.12s">don't</span></span>
+          <span class="word"><span style="animation-delay:.2s"><em>fund</em></span></span>
+          <span class="word"><span style="animation-delay:.28s">companies.</span></span>
+          <br>
+          <span class="word"><span style="animation-delay:.4s">We</span></span>
+          <span class="word"><span style="animation-delay:.5s" class="accent">co-build</span></span>
+          <span class="word"><span style="animation-delay:.6s">them.</span></span>
+        </h1>
+
+        <p class="hero-tagline">
+          We back operators building the AI-native companies that will define the next decade.
+        </p>
+
+        <div class="hero-cursor-hint">
+          <span class="dot"></span>
+          <span>Move your cursor — the field listens.</span>
+        </div>
+      </div>
+
+      <div class="hero-graphic-wrap" id="heroGraphicWrap">
+        <svg class="hero-graphic" id="heroGraphic" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="pulse-ring" cx="250" cy="250" r="230" fill="none" stroke="#FF3550" stroke-width="0.6" opacity="0.3"/>
+          <circle class="spin-slow" cx="250" cy="250" r="200" fill="none" stroke="#0A0A0A" stroke-width="0.5" stroke-dasharray="2 6"/>
+          <g class="spin-rev">
+            <circle cx="250" cy="250" r="180" fill="none" stroke="#0A0A0A" stroke-width="0.4" opacity="0.5"/>
+            <g stroke="#0A0A0A" stroke-width="0.6">
+              <line x1="250" y1="60" x2="250" y2="74"/>
+              <line x1="250" y1="426" x2="250" y2="440"/>
+              <line x1="60" y1="250" x2="74" y2="250"/>
+              <line x1="426" y1="250" x2="440" y2="250"/>
+              <line x1="115" y1="115" x2="125" y2="125"/>
+              <line x1="375" y1="115" x2="385" y2="125"/>
+              <line x1="115" y1="385" x2="125" y2="375"/>
+              <line x1="375" y1="385" x2="385" y2="375"/>
+            </g>
+          </g>
+          <circle cx="250" cy="250" r="155" fill="rgba(255,247,247,0.6)" stroke="#0A0A0A" stroke-width="0.6"/>
+          <g class="float-1">
+            <circle cx="250" cy="250" r="110" fill="none" stroke="#0A0A0A" stroke-width="0.5"/>
+            <polygon points="250,160 340,290 160,290" fill="none" stroke="#FF3550" stroke-width="1.2"/>
+          </g>
+          <g class="float-2">
+            <rect x="200" y="200" width="100" height="100" fill="none" stroke="#0A0A0A" stroke-width="0.8" transform="rotate(45 250 250)"/>
+          </g>
+          <circle cx="250" cy="250" r="8" fill="#FF3550"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= MARQUEE ============= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTop"></div>
+</div>
+
+<!-- ============= THESIS ============= -->
+<section class="thesis" id="thesis">
+  <canvas class="thesis-canvas" id="thesisCanvas"></canvas>
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">§01</span>
+      <span class="section-label">Thesis</span>
+      <span class="section-spacer"></span>
+    </div>
+
+    <div class="thesis-grid">
+      <div>
+        <h2 class="thesis-headline reveal">
+          Every cycle has a <span class="accent">winner.</span> This one's the <em>operators</em>.
+        </h2>
+        <p class="thesis-tagline reveal">
+          AI raised the bar on building. The companies winning right now have founders who already shipped at scale. We back them, write the first check, and roll up our sleeves on the parts most VCs won't touch.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <svg class="innovation-chart" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#E5E5E5" stroke-width="0.5">
+            <line x1="40" y1="40" x2="40" y2="320"/>
+            <line x1="40" y1="320" x2="580" y2="320"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="9" fill="#909090" letter-spacing="1.2">
+            <text x="60" y="345">1980</text>
+            <text x="160" y="345">1990</text>
+            <text x="260" y="345">2000</text>
+            <text x="360" y="345">2010</text>
+            <text x="460" y="345">2020</text>
+            <text x="560" y="345" text-anchor="end">2030+</text>
+          </g>
+          <g stroke="#CFCCCC" stroke-width="0.5" stroke-dasharray="2 3">
+            <line x1="60" y1="40" x2="60" y2="320"/>
+            <line x1="160" y1="40" x2="160" y2="320"/>
+            <line x1="260" y1="40" x2="260" y2="320"/>
+            <line x1="360" y1="40" x2="360" y2="320"/>
+            <line x1="460" y1="40" x2="460" y2="320"/>
+            <line x1="560" y1="40" x2="560" y2="320"/>
+          </g>
+
+          <path class="pathline" d="M 60 290 Q 110 280, 160 250 Q 210 230, 260 210 Q 310 190, 360 165 Q 410 140, 460 105 Q 510 60, 560 30"
+                fill="none" stroke="#0A0A0A" stroke-width="1.4"/>
+
+          <g font-family="JetBrains Mono, monospace" font-size="9" fill="#0A0A0A" letter-spacing="1.2">
+            <circle cx="60" cy="290" r="3" fill="#0A0A0A"/>
+            <text x="68" y="293">PCs</text>
+            <circle cx="160" cy="250" r="3" fill="#0A0A0A"/>
+            <text x="168" y="253">Internet</text>
+            <circle cx="260" cy="210" r="3" fill="#0A0A0A"/>
+            <text x="268" y="213">Mobile</text>
+            <circle cx="360" cy="165" r="3" fill="#0A0A0A"/>
+            <text x="368" y="168">Cloud</text>
+            <circle cx="460" cy="105" r="6" fill="#FF3550"/>
+            <text x="472" y="108" fill="#FF3550" font-size="11" letter-spacing="1.6">AI ◀ NOW</text>
+          </g>
+
+          <text x="40" y="30" font-family="JetBrains Mono, monospace" font-size="9" fill="#909090" letter-spacing="1.2">// FIG.01 — INNOVATION CYCLES</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= PORTFOLIO TILE GRID ============= -->
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">§02</span>
+      <span class="section-label">Portfolio</span>
+      <span class="section-spacer"></span>
+    </div>
+  </div>
+
+  <div class="pf-grid stagger">
+
+    <!-- 01 — Co:brand -->
+    <div class="pf-tile reveal" style="--i:0">
+      <div class="pf-mark">
+        <span class="pf-mark-num">01</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="pf-mark-stroke" cx="50" cy="50" r="40" fill="none" stroke="#0A0A0A" stroke-width="1"/>
+          <path class="pf-mark-stroke" d="M30 55 L42 55 L48 35 L58 75 L64 55 L72 55" stroke="#0A0A0A" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Co:brand</div>
+        <div class="pf-desc">AI-powered distribution and promotion for music labels, artists, and creators.</div>
+        <div class="pf-tag">MUSIC · MARKETING AI</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 — Liquid -->
+    <div class="pf-tile reveal" style="--i:1">
+      <div class="pf-mark">
+        <span class="pf-mark-num">02</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path class="pf-mark-stroke" d="M50 18 C30 38 22 56 30 70 C38 84 62 84 70 70 C78 56 70 38 50 18 Z" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+          <circle class="pf-mark-fill" cx="50" cy="62" r="3" fill="#0A0A0A"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Liquid</div>
+        <div class="pf-desc">Cookieless rewards — connecting brand and consumer data into personalized offers.</div>
+        <div class="pf-tag">FINTECH · MARTECH</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">Lucas Loeffler <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">Mark Baran <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 — Handoffs -->
+    <div class="pf-tile reveal" style="--i:2">
+      <div class="pf-mark">
+        <span class="pf-mark-num">03</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="pf-mark-stroke" cx="32" cy="50" r="14" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+          <circle class="pf-mark-stroke" cx="68" cy="50" r="14" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+          <line class="pf-mark-stroke" x1="46" y1="50" x2="54" y2="50" stroke="#0A0A0A" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Handoffs</div>
+        <div class="pf-desc">[ One-line description from your site ]</div>
+        <div class="pf-tag">SERVICES · AI</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 — Gigi -->
+    <div class="pf-tile reveal" style="--i:3">
+      <div class="pf-mark">
+        <span class="pf-mark-num">04</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon class="pf-mark-stroke" points="50,15 85,50 50,85 15,50" fill="none" stroke="#0A0A0A" stroke-width="1"/>
+          <polygon class="pf-mark-fill" points="50,32 68,50 50,68 32,50" fill="#0A0A0A"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Gigi</div>
+        <div class="pf-desc">[ One-line description from your site ]</div>
+        <div class="pf-tag">CONSUMER</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 — Zaymo -->
+    <div class="pf-tile reveal" style="--i:4">
+      <div class="pf-mark">
+        <span class="pf-mark-num">05</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect class="pf-mark-stroke" x="20" y="28" width="60" height="44" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+          <path class="pf-mark-stroke" d="M20 28 L50 56 L80 28" stroke="#0A0A0A" stroke-width="1.2" fill="none"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Zaymo</div>
+        <div class="pf-desc">[ One-line description from your site ]</div>
+        <div class="pf-tag">COMMERCE · INFRA</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 — Double -->
+    <div class="pf-tile reveal" style="--i:5">
+      <div class="pf-mark">
+        <span class="pf-mark-num">06</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="pf-mark-stroke" cx="40" cy="50" r="22" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+          <circle class="pf-mark-stroke" cx="60" cy="50" r="22" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Double</div>
+        <div class="pf-desc">[ One-line description from your site ]</div>
+        <div class="pf-tag">CONSUMER · FINTECH</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 — Nuvo -->
+    <div class="pf-tile reveal" style="--i:6">
+      <div class="pf-mark">
+        <span class="pf-mark-num">07</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon class="pf-mark-stroke" points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+          <line class="pf-mark-stroke" x1="50" y1="18" x2="50" y2="82" stroke="#0A0A0A" stroke-width="1"/>
+          <line class="pf-mark-stroke" x1="22" y1="34" x2="78" y2="66" stroke="#0A0A0A" stroke-width="1"/>
+          <line class="pf-mark-stroke" x1="78" y1="34" x2="22" y2="66" stroke="#0A0A0A" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Nuvo</div>
+        <div class="pf-desc">[ One-line description from your site ]</div>
+        <div class="pf-tag">FINTECH · AI</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 — Suppli -->
+    <div class="pf-tile reveal" style="--i:7">
+      <div class="pf-mark">
+        <span class="pf-mark-num">08</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect class="pf-mark-stroke" x="20" y="20" width="60" height="60" fill="none" stroke="#0A0A0A" stroke-width="1"/>
+          <line class="pf-mark-stroke" x1="20" y1="40" x2="80" y2="40" stroke="#0A0A0A" stroke-width="1"/>
+          <circle class="pf-mark-fill" cx="68" cy="60" r="4" fill="#0A0A0A"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Suppli</div>
+        <div class="pf-desc">[ One-line description from your site ]</div>
+        <div class="pf-tag">FINTECH · CONSTRUCTION</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 — Realm Alliance -->
+    <div class="pf-tile reveal" style="--i:8">
+      <div class="pf-mark">
+        <span class="pf-mark-num">09</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path class="pf-mark-stroke" d="M50 12 L80 26 V52 C80 70 67 84 50 90 C33 84 20 70 20 52 V26 Z" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+          <path class="pf-mark-stroke" d="M37 50 L46 60 L65 40" stroke="#0A0A0A" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Realm <em>Alliance</em></div>
+        <div class="pf-desc">AI-enabled unified security platform for critical industries.</div>
+        <div class="pf-tag">SECURITY · AI</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 — Fluidic ML -->
+    <div class="pf-tile reveal" style="--i:9">
+      <div class="pf-mark">
+        <span class="pf-mark-num">10</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" class="pf-mark-stroke" stroke="#0A0A0A" stroke-width="1.2">
+            <path d="M20 70 Q35 50 50 70 Q65 90 80 70" />
+            <path d="M20 50 Q35 30 50 50 Q65 70 80 50" />
+            <path d="M20 30 Q35 10 50 30 Q65 50 80 30" />
+          </g>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name">Fluidic <em>ML</em></div>
+        <div class="pf-desc">[ One-line description from your site ]</div>
+        <div class="pf-tag">ML · INFRA</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <a class="pf-founder-link" href="#" target="_blank" rel="noopener">[ Founder Name ] <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 — Stealth -->
+    <div class="pf-tile reveal" style="--i:10">
+      <div class="pf-mark">
+        <span class="pf-mark-num">11</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect class="pf-mark-stroke" x="20" y="20" width="60" height="60" fill="none" stroke="#0A0A0A" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="50" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" fill="#0A0A0A" font-weight="500">?</text>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name"><em>Stealth</em></div>
+        <div class="pf-desc">A handful of companies still in stealth.</div>
+        <div class="pf-tag">UNANNOUNCED</div>
+        <div class="pf-founders">
+          <span class="pf-founders-label">FOUNDED BY</span>
+          <span style="color:var(--gray-300);">— — —</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 — Link to full portfolio -->
+    <div class="pf-tile reveal" style="--i:11">
+      <div class="pf-mark" style="background:var(--coral-soft);">
+        <span class="pf-mark-num">→</span>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="20" y1="50" x2="80" y2="50" stroke="#FF3550" stroke-width="1.4"/>
+          <polyline points="64,34 80,50 64,66" fill="none" stroke="#FF3550" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="pf-info">
+        <div class="pf-name" style="color:var(--coral);">More</div>
+        <div class="pf-desc" style="color:var(--gray-700);">Following on with companies cycle to cycle.</div>
+        <div class="pf-tag" style="color:var(--coral);">VIEW PORTFOLIO →</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= TEAM ============= -->
+<section class="team" id="team">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">§03</span>
+      <span class="section-label">Team</span>
+      <span class="section-spacer"></span>
+    </div>
+
+    <div class="team-grid stagger">
+
+      <div class="team-cell reveal" style="--i:0">
+        <div class="team-avatar">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="60" cy="60" r="58" fill="none" stroke="#CFCCCC" stroke-width="0.5"/>
+            <circle cx="60" cy="48" r="18" fill="none" stroke="#0A0A0A" stroke-width="1"/>
+            <path d="M22 100 C30 80 45 72 60 72 C75 72 90 80 98 100" fill="none" stroke="#0A0A0A" stroke-width="1"/>
+            <circle cx="60" cy="48" r="3" fill="#FF3550"/>
+          </svg>
+        </div>
+        <div>
+          <div class="team-name-row">
+            <div class="team-name">Rosco Hill</div>
+            <a class="team-linkedin" href="#" target="_blank" rel="noopener" aria-label="Rosco Hill on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg>
+            </a>
+          </div>
+          <div class="team-role">GENERAL PARTNER · NYC / TORONTO</div>
+          <div class="team-bio">Operator with billion-dollar outcomes. Co-founded Perpetua (8-figure acquisition); on the early team at Blend ($4B IPO) and Palantir ($20B IPO). Was Quant and Head of Lab at Clarium Capital before turning operator-investor.</div>
+          <div class="team-built">PREV: <span>Perpetua</span> · <span>Blend</span> · <span>Palantir</span> · <span>Clarium</span> · <span>Waterloo CS</span></div>
+        </div>
+      </div>
+
+      <div class="team-cell reveal" style="--i:1">
+        <div class="team-avatar">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="60" cy="60" r="58" fill="none" stroke="#CFCCCC" stroke-width="0.5"/>
+            <rect x="42" y="34" width="36" height="36" fill="none" stroke="#0A0A0A" stroke-width="1" transform="rotate(45 60 52)"/>
+            <path d="M28 102 C36 84 48 78 60 78 C72 78 84 84 92 102" fill="none" stroke="#0A0A0A" stroke-width="1"/>
+            <circle cx="60" cy="52" r="3" fill="#FF3550"/>
+          </svg>
+        </div>
+        <div>
+          <div class="team-name-row">
+            <div class="team-name">Zafar Mirzaliev</div>
+            <a class="team-linkedin" href="#" target="_blank" rel="noopener" aria-label="Zafar Mirzaliev on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.78-1.75-1.73s.78-1.73 1.75-1.73 1.75.78 1.75 1.73-.78 1.73-1.75 1.73zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/></svg>
+            </a>
+          </div>
+          <div class="team-role">GENERAL PARTNER · NYC / TORONTO</div>
+          <div class="team-bio">Family office and growth-fund investor turned operator-investor. Advised the CEO at Perpetua. Wrote angel checks across AI, SaaS, and fintech. Brings the LP bench and a sharp eye for what actually compounds.</div>
+          <div class="team-built">PREV: <span>Family office</span> · <span>Betaworks</span> · <span>STACKED</span> · <span>Parsons</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= CONTACT ============= -->
+<section class="contact" id="contact">
+  <canvas class="contact-canvas" id="contactCanvas"></canvas>
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">§04</span>
+      <span class="section-label">Build with us</span>
+      <span class="section-spacer"></span>
+    </div>
+
+    <div class="contact-grid">
+      <h2>
+        Already <em>shipped</em> something that mattered? <span class="accent">Email us.</span>
+      </h2>
+
+      <div class="contact-email">
+        <div class="contact-email-label">// Direct line</div>
+        <a href="mailto:hello@cobuild.ventures">hello@cobuild.ventures</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-wordmark">co<span class="colon">:</span>build ventures</div>
+        <div class="footer-tag">New York</div>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="#thesis">Thesis</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="mailto:hello@cobuild.ventures">Email</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-bottom">
+      © co:build ventures
+    </div>
+  </div>
+</footer>
+
+<script>
+  // =============================================================
+  // FLOW FIELD — interactive vector field with particle trails
+  // The "dynamic image" — particles flow along curves driven by
+  // layered sine/cosine waves animating in time. Cursor warps the
+  // field locally, pushing trails away.
+  // =============================================================
+  function makeFlowField(canvas, opts = {}) {
+    if (!canvas) return null;
+    const ctx = canvas.getContext('2d');
+    const o = Object.assign({
+      density: 18000,        // 1 particle per N px²
+      noiseScale: 0.0028,
+      timeStep: 0.0009,
+      maxSpeed: 1.6,
+      damping: 0.93,
+      mouseRadius: 220,
+      mouseStrength: 1.4,
+      fadeAlpha: 0.025,      // background fade per frame (lower = longer trails)
+      fadeColor: '255,247,247',
+      coralRatio: 0.22,
+      inkAlpha: 0.06,
+      coralAlpha: 0.13,
+      lineWidth: 0.5,
+      coralLineWidth: 0.7,
+      reseedRate: 0.002,     // chance per frame any particle re-seeds (refreshes trails)
+      cursorTarget: canvas.parentElement,  // where to listen for mouse
+    }, opts);
+
+    let w, h, dpr;
+    let particles = [];
+    let t = 0;
+    const mouse = { x: -9999, y: -9999, active: false };
+    let running = true;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const r = canvas.parentElement.getBoundingClientRect();
+      w = r.width; h = r.height;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed();
+    }
+
+    function seed() {
+      const count = Math.max(60, Math.floor((w * h) / o.density));
+      particles = new Array(count).fill(0).map(() => spawn());
+      // clear
+      ctx.fillStyle = `rgb(${o.fadeColor})`;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function spawn() {
+      return {
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: 0, vy: 0,
+        coral: Math.random() < o.coralRatio,
+        life: 60 + Math.random() * 220,
+      };
+    }
+
+    function field(x, y) {
+      const s = o.noiseScale;
+      // layered sine "noise" — cheap but flowing
+      const a =
+        Math.sin(x * s + t) * Math.cos(y * s * 0.7) +
+        Math.sin(x * s * 0.4 - t * 0.7) * Math.cos(y * s * 0.9 + t * 0.5) +
+        Math.sin((x + y) * s * 0.3 + t * 0.3) * 0.6;
+      return a * Math.PI * 0.7;
+    }
+
+    function step() {
+      if (!running) { requestAnimationFrame(step); return; }
+      t += 1;
+
+      // background fade — creates trails
+      ctx.fillStyle = `rgba(${o.fadeColor}, ${o.fadeAlpha})`;
+      ctx.fillRect(0, 0, w, h);
+
+      for (const p of particles) {
+        const ang = field(p.x, p.y) + (t * o.timeStep);
+        p.vx += Math.cos(ang) * 0.45;
+        p.vy += Math.sin(ang) * 0.45;
+
+        if (mouse.active) {
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          const d2 = dx * dx + dy * dy;
+          const r2 = o.mouseRadius * o.mouseRadius;
+          if (d2 < r2 && d2 > 1) {
+            const d = Math.sqrt(d2);
+            const f = (1 - d / o.mouseRadius) * o.mouseStrength;
+            p.vx += (dx / d) * f * 1.6;
+            p.vy += (dy / d) * f * 1.6;
+          }
+        }
+
+        p.vx *= o.damping;
+        p.vy *= o.damping;
+        // clamp
+        const sp = Math.hypot(p.vx, p.vy);
+        if (sp > o.maxSpeed) {
+          p.vx = (p.vx / sp) * o.maxSpeed;
+          p.vy = (p.vy / sp) * o.maxSpeed;
+        }
+
+        const ox = p.x, oy = p.y;
+        p.x += p.vx; p.y += p.vy;
+        p.life--;
+
+        if (p.life <= 0 || p.x < -10 || p.x > w + 10 || p.y < -10 || p.y > h + 10 || Math.random() < o.reseedRate) {
+          // respawn somewhere fresh
+          p.x = Math.random() * w;
+          p.y = Math.random() * h;
+          p.vx = 0; p.vy = 0;
+          p.life = 60 + Math.random() * 220;
+          continue;
+        }
+
+        if (p.coral) {
+          ctx.strokeStyle = `rgba(255, 53, 80, ${o.coralAlpha})`;
+          ctx.lineWidth = o.coralLineWidth;
+        } else {
+          ctx.strokeStyle = `rgba(10, 10, 10, ${o.inkAlpha})`;
+          ctx.lineWidth = o.lineWidth;
+        }
+        ctx.beginPath();
+        ctx.moveTo(ox, oy);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    const target = o.cursorTarget;
+    target.addEventListener('mousemove', (e) => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+      mouse.active = true;
+    });
+    target.addEventListener('mouseleave', () => { mouse.active = false; mouse.x = mouse.y = -9999; });
+    target.addEventListener('touchmove', (e) => {
+      const t0 = e.touches[0]; if (!t0) return;
+      const r = canvas.getBoundingClientRect();
+      mouse.x = t0.clientX - r.left;
+      mouse.y = t0.clientY - r.top;
+      mouse.active = true;
+    }, { passive: true });
+
+    // Pause when not visible (perf)
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) running = e.isIntersecting;
+    }, { threshold: 0 });
+    io.observe(canvas);
+
+    window.addEventListener('resize', resize);
+    resize();
+    step();
+
+    return { resize, canvas };
+  }
+
+  // Hero — bold, prominent flow field
+  makeFlowField(document.getElementById('heroCanvas'), {
+    density: 14000,
+    fadeAlpha: 0.022,
+    inkAlpha: 0.065,
+    coralAlpha: 0.16,
+    coralRatio: 0.25,
+    mouseRadius: 240,
+    mouseStrength: 1.6,
+    lineWidth: 0.55,
+    coralLineWidth: 0.85,
+    cursorTarget: document.querySelector('.hero'),
+  });
+
+  // Thesis — subtle background flow
+  makeFlowField(document.getElementById('thesisCanvas'), {
+    density: 26000,
+    fadeAlpha: 0.04,
+    inkAlpha: 0.04,
+    coralAlpha: 0.08,
+    coralRatio: 0.18,
+    mouseRadius: 180,
+    mouseStrength: 1.0,
+    cursorTarget: document.querySelector('.thesis'),
+  });
+
+  // Contact — dark variant
+  makeFlowField(document.getElementById('contactCanvas'), {
+    density: 22000,
+    fadeAlpha: 0.04,
+    fadeColor: '10,10,10',
+    inkAlpha: 0.05,           // inkAlpha used for cream particles here
+    coralAlpha: 0.18,
+    coralRatio: 0.32,
+    mouseRadius: 220,
+    mouseStrength: 1.2,
+    cursorTarget: document.querySelector('.contact'),
+    // override colors via lineColor pattern below — handled inside step,
+    // but we need cream lines on dark, so pass a fade tweak:
+  });
+
+  // (For the dark contact canvas the ink particles will be barely visible — we
+  // override draw via patching below: replace ink color with cream where
+  // background is dark.)
+  (function tintContactCanvas() {
+    const c = document.getElementById('contactCanvas');
+    if (!c) return;
+    // Quick CSS-side tint: switch composite mode so "ink" particles appear cream
+    c.style.mixBlendMode = 'screen';
+  })();
+
+  // =============================================================
+  // Hero orbital graphic — parallax tilt to cursor
+  // =============================================================
+  (function() {
+    const wrap = document.getElementById('heroGraphicWrap');
+    const svg  = document.getElementById('heroGraphic');
+    if (!wrap || !svg) return;
+    const hero = document.querySelector('.hero');
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      const rx = (e.clientX - r.left) / r.width  - 0.5; // -0.5 .. 0.5
+      const ry = (e.clientY - r.top)  / r.height - 0.5;
+      tx = rx; ty = ry;
+    });
+    hero.addEventListener('mouseleave', () => { tx = 0; ty = 0; });
+
+    function tick() {
+      cx += (tx - cx) * 0.06;
+      cy += (ty - cy) * 0.06;
+      const rotY = cx * 18;     // deg
+      const rotX = -cy * 14;    // deg
+      const tX = cx * -12;
+      const tY = cy * -12;
+      svg.style.transform =
+        `translate3d(${tX}px, ${tY}px, 0) rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  // =============================================================
+  // Marquee
+  // =============================================================
+  (function(){
+    const items = ['FINTECH', 'AI INFRASTRUCTURE', 'SECURITY', 'CONSUMER', 'MUSIC × AI', 'COMMERCE', 'CONSTRUCTION', 'SaaS'];
+    const track = document.getElementById('marqueeTop');
+    if (!track) return;
+    const html = [];
+    for (let r = 0; r < 4; r++) {
+      items.forEach(t => {
+        html.push(`<div class="marquee-item"><span>${t}</span><span class="star">✦</span></div>`);
+      });
+    }
+    track.innerHTML = html.join('');
+  })();
+
+  // =============================================================
+  // Reveal on scroll
+  // =============================================================
+  (function(){
+    const els = document.querySelectorAll('.reveal, .section-header');
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // =============================================================
+  // Portfolio name scramble on hover
+  // =============================================================
+  (function(){
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
+    document.querySelectorAll('.pf-tile').forEach(item => {
+      const nameEl = item.querySelector('.pf-name');
+      if (!nameEl) return;
+      const orig = nameEl.innerHTML;
+      let interval = null;
+      item.addEventListener('mouseenter', () => {
+        const text = nameEl.textContent;
+        let iter = 0;
+        clearInterval(interval);
+        interval = setInterval(() => {
+          nameEl.textContent = text.split('').map((c, idx) => {
+            if (idx < iter) return text[idx];
+            if (c === ' ') return ' ';
+            return chars[Math.floor(Math.random() * chars.length)];
+          }).join('');
+          if (iter >= text.length) { clearInterval(interval); nameEl.innerHTML = orig; }
+          iter += 1 / 2;
+        }, 28);
+      });
+      item.addEventListener('mouseleave', () => { clearInterval(interval); nameEl.innerHTML = orig; });
+    });
+  })();
+</script>
+
+</body>
+</html>
