@@ -142,10 +142,10 @@
 
   .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(44px, 6.6vw, 96px);
-    line-height: 1.04; letter-spacing: -0.025em; font-weight: 400;
-    margin-bottom: 48px;
-    max-width: 1180px;
+    font-size: clamp(64px, 12vw, 200px);
+    line-height: 0.96; letter-spacing: -0.03em; font-weight: 400;
+    margin-bottom: 56px;
+    max-width: 100%;
   }
   .hero h1 .word { display: inline-block; overflow: hidden; vertical-align: top; }
   .hero h1 .word > span {
@@ -175,13 +175,13 @@
   /* Hero side graphic — absolute, sits behind text on right */
   .hero-graphic-wrap {
     position: absolute;
-    top: 50%;
+    top: 18%;
     right: 0;
-    transform: translateY(-50%);
-    width: clamp(320px, 32vw, 460px);
+    width: clamp(220px, 22vw, 340px);
     z-index: 1;
     pointer-events: auto;
     perspective: 1000px;
+    opacity: 0.95;
   }
   .hero-graphic {
     width: 100%; height: auto; display: block;
@@ -550,6 +550,7 @@
           <span class="word"><span style="animation-delay:.05s">We</span></span>
           <span class="word"><span style="animation-delay:.12s">don't</span></span>
           <span class="word"><span style="animation-delay:.2s"><em>fund</em></span></span>
+          <br>
           <span class="word"><span style="animation-delay:.28s">companies.</span></span>
           <br>
           <span class="word"><span style="animation-delay:.4s">We</span></span>
