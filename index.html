@@ -100,6 +100,14 @@
     display: flex; align-items: center; overflow: hidden;
     cursor: crosshair;
   }
+  /* Hero is full-bleed so the headline can span the viewport */
+  .hero .wrap {
+    max-width: 100%;
+    padding: 0 48px;
+  }
+  @media (max-width: 720px) {
+    .hero .wrap { padding: 0 20px; }
+  }
   .hero-canvas {
     position: absolute; inset: 0; z-index: 0;
     pointer-events: none;
@@ -142,8 +150,8 @@
 
   .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(64px, 12vw, 200px);
-    line-height: 0.96; letter-spacing: -0.03em; font-weight: 400;
+    font-size: clamp(52px, 7.6vw, 152px);
+    line-height: 0.98; letter-spacing: -0.025em; font-weight: 400;
     margin-bottom: 56px;
     max-width: 100%;
   }
@@ -550,7 +558,6 @@
           <span class="word"><span style="animation-delay:.05s">We</span></span>
           <span class="word"><span style="animation-delay:.12s">don't</span></span>
           <span class="word"><span style="animation-delay:.2s"><em>fund</em></span></span>
-          <br>
           <span class="word"><span style="animation-delay:.28s">companies.</span></span>
           <br>
           <span class="word"><span style="animation-delay:.4s">We</span></span>
