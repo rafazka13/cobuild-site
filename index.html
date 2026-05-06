@@ -114,8 +114,8 @@
   }
   .hero-content { position: relative; z-index: 2; width: 100%; }
   .hero-grid {
-    display: grid; grid-template-columns: 1.5fr 1fr;
-    gap: 60px; align-items: center;
+    display: grid; grid-template-columns: 1.7fr 0.9fr;
+    gap: 48px; align-items: center;
   }
   @media (max-width: 1020px) {
     .hero-grid { grid-template-columns: 1fr; }
@@ -138,9 +138,10 @@
 
   .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(48px, 8vw, 124px);
-    line-height: 0.95; letter-spacing: -0.025em; font-weight: 400;
+    font-size: clamp(44px, 7.4vw, 108px);
+    line-height: 1.02; letter-spacing: -0.025em; font-weight: 400;
     margin-bottom: 48px;
+    max-width: 100%;
   }
   .hero h1 .word { display: inline-block; overflow: hidden; vertical-align: top; }
   .hero h1 .word > span {
@@ -432,8 +433,8 @@
   .contact h2 {
     grid-column: 1 / span 9;
     font-family: var(--serif);
-    font-size: clamp(40px, 5.6vw, 84px);
-    line-height: 1.02; letter-spacing: -0.025em; font-weight: 400;
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: 1.08; letter-spacing: -0.025em; font-weight: 400;
   }
   .contact h2 em { color: var(--gray-500); font-style: italic; }
   .contact h2 .accent { color: var(--coral); font-style: italic; }
