@@ -18,6 +18,8 @@
     --gray-200: #E5E5E5;
     --coral: #FF3550;
     --coral-soft: #FFE6EA;
+    --purple: #6B4FBA;
+    --purple-soft: #ECE4FF;
     --serif: 'Instrument Serif', 'Times New Roman', serif;
     --sans: 'Inter', system-ui, sans-serif;
     --mono: 'JetBrains Mono', 'Menlo', monospace;
@@ -103,7 +105,7 @@
   /* Hero is full-bleed so the headline can span the viewport */
   .hero .wrap {
     max-width: 100%;
-    padding: 0 48px;
+    padding: 0 40px;
   }
   @media (max-width: 720px) {
     .hero .wrap { padding: 0 20px; }
@@ -150,8 +152,8 @@
 
   .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(52px, 7.6vw, 152px);
-    line-height: 0.98; letter-spacing: -0.025em; font-weight: 400;
+    font-size: clamp(48px, 7vw, 152px);
+    line-height: 0.96; letter-spacing: -0.03em; font-weight: 400;
     margin-bottom: 56px;
     max-width: 100%;
   }
@@ -205,16 +207,14 @@
   .hero-graphic .pulse-ring {
     transform-origin: 250px 250px; animation: ringPulse 4s ease-in-out infinite;
   }
-  .hero-graphic .float-1 { animation: float 7s ease-in-out infinite; transform-origin: 250px 250px; }
-  .hero-graphic .float-2 { animation: float 9s ease-in-out infinite reverse; transform-origin: 250px 250px; }
+  /* Eye-tracking shapes — JS sets transform attribute, no CSS animation */
+  .hero-graphic .float-1, .hero-graphic .float-2 {
+    transition: opacity 0.3s ease;
+  }
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes ringPulse {
     0%, 100% { transform: scale(1); opacity: 0.4; }
     50% { transform: scale(1.06); opacity: 0.7; }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
   }
 
   /* === Section primitives === */
@@ -577,7 +577,7 @@
 
       <div class="hero-graphic-wrap" id="heroGraphicWrap">
         <svg class="hero-graphic" id="heroGraphic" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle class="pulse-ring" cx="250" cy="250" r="230" fill="none" stroke="#FF3550" stroke-width="0.6" opacity="0.3"/>
+          <circle class="pulse-ring" cx="250" cy="250" r="230" fill="none" stroke="#6B4FBA" stroke-width="0.6" opacity="0.4"/>
           <circle class="spin-slow" cx="250" cy="250" r="200" fill="none" stroke="#0A0A0A" stroke-width="0.5" stroke-dasharray="2 6"/>
           <g class="spin-rev">
             <circle cx="250" cy="250" r="180" fill="none" stroke="#0A0A0A" stroke-width="0.4" opacity="0.5"/>
@@ -593,12 +593,14 @@
             </g>
           </g>
           <circle cx="250" cy="250" r="155" fill="rgba(255,247,247,0.6)" stroke="#0A0A0A" stroke-width="0.6"/>
-          <g class="float-1">
+          <g class="float-1" id="eye-triangle">
             <circle cx="250" cy="250" r="110" fill="none" stroke="#0A0A0A" stroke-width="0.5"/>
-            <polygon points="250,160 340,290 160,290" fill="none" stroke="#FF3550" stroke-width="1.2"/>
+            <polygon points="250,160 340,290 160,290" fill="none" stroke="#6B4FBA" stroke-width="1.4"/>
           </g>
-          <g class="float-2">
-            <rect x="200" y="200" width="100" height="100" fill="none" stroke="#0A0A0A" stroke-width="0.8" transform="rotate(45 250 250)"/>
+          <g class="float-2" id="eye-square">
+            <g transform="rotate(45 250 250)">
+              <rect x="200" y="200" width="100" height="100" fill="none" stroke="#0A0A0A" stroke-width="0.8"/>
+            </g>
           </g>
           <circle cx="250" cy="250" r="8" fill="#FF3550"/>
         </svg>
@@ -1263,32 +1265,65 @@
   })();
 
   // =============================================================
-  // Hero orbital graphic — parallax tilt to cursor
+  // Hero orbital — subtle 3D parallax tilt + eye-tracking shapes
+  // The triangle and square track the cursor like an iris/pupil,
+  // smooth-eased so it feels alive, not jittery.
   // =============================================================
   (function() {
     const wrap = document.getElementById('heroGraphicWrap');
     const svg  = document.getElementById('heroGraphic');
     if (!wrap || !svg) return;
     const hero = document.querySelector('.hero');
-    let tx = 0, ty = 0, cx = 0, cy = 0;
+    const eyeTri = document.getElementById('eye-triangle');
+    const eyeSq  = document.getElementById('eye-square');
+
+    // Tilt state (whole SVG)
+    let ttx = 0, tty = 0, tcx = 0, tcy = 0;
+    // Eye state (inner shapes)
+    let etx = 0, ety = 0, ecx = 0, ecy = 0;
+    const eyeMax = 38;    // SVG units (viewBox 500) — how far iris can shift
+    const eyeReach = 720; // px from orbital center for full deflection
 
     hero.addEventListener('mousemove', (e) => {
+      // tilt — based on cursor pos within hero
       const r = hero.getBoundingClientRect();
-      const rx = (e.clientX - r.left) / r.width  - 0.5; // -0.5 .. 0.5
-      const ry = (e.clientY - r.top)  / r.height - 0.5;
-      tx = rx; ty = ry;
+      ttx = (e.clientX - r.left) / r.width  - 0.5;
+      tty = (e.clientY - r.top)  / r.height - 0.5;
+
+      // eye — based on cursor pos relative to orbital center
+      const sr = svg.getBoundingClientRect();
+      const ox = sr.left + sr.width  / 2;
+      const oy = sr.top  + sr.height / 2;
+      const dx = e.clientX - ox;
+      const dy = e.clientY - oy;
+      const dist = Math.hypot(dx, dy);
+      const f = Math.min(dist / eyeReach, 1);
+      if (dist > 1) {
+        etx = (dx / dist) * f * eyeMax;
+        ety = (dy / dist) * f * eyeMax;
+      } else { etx = 0; ety = 0; }
     });
-    hero.addEventListener('mouseleave', () => { tx = 0; ty = 0; });
+    hero.addEventListener('mouseleave', () => {
+      ttx = 0; tty = 0; etx = 0; ety = 0;
+    });
 
     function tick() {
-      cx += (tx - cx) * 0.06;
-      cy += (ty - cy) * 0.06;
-      const rotY = cx * 18;     // deg
-      const rotX = -cy * 14;    // deg
-      const tX = cx * -12;
-      const tY = cy * -12;
+      // tilt — subtle 3D
+      tcx += (ttx - tcx) * 0.06;
+      tcy += (tty - tcy) * 0.06;
+      const rotY = tcx * 8;
+      const rotX = -tcy * 6;
+      const tX = tcx * -5;
+      const tY = tcy * -5;
       svg.style.transform =
         `translate3d(${tX}px, ${tY}px, 0) rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+
+      // eye-tracking — triangle leads (deeper), square follows softer (foreground)
+      ecx += (etx - ecx) * 0.09;
+      ecy += (ety - ecy) * 0.09;
+      if (eyeTri) eyeTri.setAttribute('transform', `translate(${ecx.toFixed(2)} ${ecy.toFixed(2)})`);
+      if (eyeSq)  eyeSq.setAttribute('transform',  `translate(${(ecx*0.55).toFixed(2)} ${(ecy*0.55).toFixed(2)})`);
+
       requestAnimationFrame(tick);
     }
     tick();
