@@ -1,0 +1,8 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lumopath">
+  <title>Lumopath</title>
+  <g fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square">
+    <polyline points="15,82 35,58 52,68 78,28"/>
+    <circle cx="78" cy="28" r="5"/>
+    <circle cx="15" cy="82" r="2"/>
+  </g>
+</svg>

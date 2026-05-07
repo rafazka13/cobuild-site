@@ -1,0 +1,10 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Armilla AI">
+  <title>Armilla AI</title>
+  <g fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square">
+    <polygon points="20,15 80,15 80,52 50,90 20,52"/>
+    <line x1="20" y1="52" x2="80" y2="52"/>
+    <line x1="20" y1="15" x2="50" y2="52"/>
+    <line x1="80" y1="15" x2="50" y2="52"/>
+    <line x1="50" y1="52" x2="50" y2="90"/>
+  </g>
+</svg>

@@ -1,0 +1,7 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Liquid">
+  <title>Liquid</title>
+  <g fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square">
+    <path d="M 50 12 C 78 42 78 70 50 88 C 22 70 22 42 50 12 Z"/>
+    <path d="M 32 62 Q 41 54 50 62 T 68 62"/>
+  </g>
+</svg>
