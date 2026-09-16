@@ -1,1 +1,10 @@
 .DS_Store
+
+# Python (services/)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+.env
+services/exercise-gifs/exercise-gifs-out/
