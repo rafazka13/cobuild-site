@@ -1,0 +1,65 @@
+{
+  "name": "Full Body Strength A",
+  "blocks": [
+    {
+      "name": "A",
+      "exercises": [
+        {
+          "exercise": "Back Squat",
+          "sets": 4,
+          "reps": 5,
+          "rpe": 8,
+          "rest": "3 min"
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "exercises": [
+        {
+          "exercise": "Romanian Deadlift",
+          "sets": 3,
+          "reps": 8,
+          "rpe": 7.5,
+          "tempo": "3-1-1-0"
+        },
+        {
+          "exercise": "Bench Press",
+          "sets": 4,
+          "reps": 6,
+          "rpe": 8,
+          "rest": "2-3 min"
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "exercises": [
+        {
+          "exercise": "Barbell Row",
+          "sets": 3,
+          "reps": 10,
+          "rpe": 7
+        },
+        {
+          "exercise": "Walking Lunge",
+          "sets": 3,
+          "reps": "10 each leg",
+          "load": "moderate dumbbells",
+          "notes": "Keep the front heel down."
+        }
+      ]
+    },
+    {
+      "name": "D",
+      "exercises": [
+        {
+          "exercise": "Plank",
+          "sets": 3,
+          "reps": "45 s",
+          "rest": "60 s"
+        }
+      ]
+    }
+  ]
+}
