@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from .models import KeyframePlan
 
+# Bump when the prompt wording changes so cached sheets drawn with the old prompt are not reused.
+PROMPT_VERSION = 1
+
 STYLE_PRESETS: dict[str, str] = {
     "flat": (
         "clean flat vector illustration in the style of a modern fitness app: simple bold shapes, "

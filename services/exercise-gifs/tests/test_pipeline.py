@@ -162,12 +162,15 @@ def test_openai_backend_end_to_end_with_fake_client(fake_client, tmp_path):
     assert meta["source"] == "openai:gpt-image-2" and meta["usage"]["output_tokens"] == 1000 and "Back Squat" in meta["prompt"]
 
 
-def test_sheet_key_ignores_cue_but_not_style(service):
+def test_sheet_key_ignores_cue_but_not_style(service, monkeypatch):
     plan = KeyframePlan(exercise="X", keyframes=("a", "b"), cue="one")
     same_drawing = KeyframePlan(exercise="X", keyframes=("a", "b"), cue="two")
     assert service._sheet_key(plan) == service._sheet_key(same_drawing)
     other = ExerciseGifService(service.settings.with_(style="clay"), frame_source=service.frame_source, cache=service.cache)
     assert other._sheet_key(plan) != service._sheet_key(plan)
+    before = service._sheet_key(plan)
+    monkeypatch.setattr("exercise_gifs.pipeline.PROMPT_VERSION", 999)
+    assert service._sheet_key(plan) != before
 
 
 def test_build_caption():

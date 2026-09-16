@@ -34,6 +34,15 @@ def test_snap_moves_boundaries_onto_drawn_lines():
     assert ys[0] == 0 and ys[-1] == 1024 and abs(ys[1] - 524) <= 2
 
 
+def test_snap_prefers_the_line_nearest_the_expected_boundary():
+    sheet = _white_sheet()
+    draw = ImageDraw.Draw(sheet)
+    draw.line([(0, 520), (1536, 520)], fill=LINE, width=3)  # the real separator, slightly off
+    draw.line([(0, 488), (1536, 488)], fill=(60, 60, 60), width=4)  # a floor line across the top row
+    ys = snap_boundaries(sheet, even_boundaries(1024, 2), axis=1)
+    assert abs(ys[1] - 520) <= 2
+
+
 def test_snap_ignores_wide_dark_regions_and_short_lines():
     sheet = _white_sheet()
     draw = ImageDraw.Draw(sheet)

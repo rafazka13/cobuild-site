@@ -18,6 +18,7 @@ from .gif import assemble_gif, read_gif_info
 from .library import ExerciseLibrary
 from .models import ExerciseGif, KeyframePlan, Session, SessionGifs, SessionItem, normalize_session
 from .planner import KeyframePlanner
+from .prompts import PROMPT_VERSION
 from .settings import Settings
 from .sprites import blank_panels, slice_grid
 
@@ -319,7 +320,7 @@ class ExerciseGifService:
         if s.reference_image is not None:
             reference = hashlib.sha256(Path(s.reference_image).read_bytes()).hexdigest()[:16]
         return make_key(
-            "sheet", plan_data, s.style, s.athlete, self._source_id(),
+            "sheet", PROMPT_VERSION, plan_data, s.style, s.athlete, self._source_id(),
             getattr(self.frame_source, "quality", None), s.grid_cols, s.grid_rows, reference,
         )
 

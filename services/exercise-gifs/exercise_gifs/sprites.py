@@ -47,7 +47,9 @@ def snap_boundaries(
     Image models rarely place panel borders at mathematically exact positions. For each
     interior boundary we look ±``search`` of the sheet size for a thin column (axis 0) or row
     (axis 1) that is almost entirely non-white, which is what a drawn separator looks like,
-    and snap to it. Boundaries with no convincing line nearby are left untouched.
+    and snap to the qualifying line nearest the expected position (a floor line drawn just
+    above a boundary must not win over the real separator). Boundaries with no convincing
+    line nearby, or with a wide dark region in the window, are left untouched.
     """
     width, height = sheet.size
     length = width if axis == 0 else height
@@ -62,15 +64,10 @@ def snap_boundaries(
         else:
             band = sheet.crop((0, lo, width, hi)).transpose(Image.Transpose.TRANSPOSE)
         profile = _coverage_profile(band, white_threshold)
-        if not profile:
-            continue
-        best = max(range(len(profile)), key=profile.__getitem__)
-        if profile[best] < min_coverage:
-            continue
-        run = sum(1 for v in profile if v >= min_coverage)
-        if run > max_run:
-            continue  # a wide dark region is content, not a separator
-        snapped[i] = lo + best
+        candidates = [j for j, v in enumerate(profile) if v >= min_coverage]
+        if not candidates or len(candidates) > max_run:
+            continue  # nothing line-like, or a wide dark region that is content
+        snapped[i] = lo + min(candidates, key=lambda j: abs(lo + j - expected))
     return snapped
 
 
