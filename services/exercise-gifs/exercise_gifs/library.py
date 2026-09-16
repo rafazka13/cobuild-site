@@ -9,7 +9,15 @@ from . import library_data
 from .models import KeyframePlan, normalize_name
 
 _PAREN = re.compile(r"\([^)]*\)|\[[^\]]*\]")
-_PRESCRIPTION = re.compile(r"\b\d+\s*[x×]\s*\d+\b|\b\d+\s*(reps?|sets?|kg|lbs?|%|rpe)\b|\brpe\s*\d+\b", re.IGNORECASE)
+_NUM = r"\d+(?:[.,]\d+)?"
+_UNIT = r"(?:reps?|sets?|kgs?|lbs?|%|s|secs?|seconds?|m|mins?|minutes?)"
+_PRESCRIPTION = re.compile(
+    rf"\b{_NUM}\s*[x×]\s*{_NUM}\s*{_UNIT}?\b"  # 3x5, 4 x 8, 3x45s
+    rf"|\b{_NUM}\s*{_UNIT}\b"  # 45s, 60 kg, 2min, 80%
+    rf"|\brpe\s*{_NUM}\b"
+    r"|@.*$",  # "@ 80 kg", "@ RPE 8"
+    re.IGNORECASE,
+)
 
 
 def _clean_query(name: str) -> str:

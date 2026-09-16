@@ -29,7 +29,7 @@ def _coverage_profile(band: Image.Image, white_threshold: int) -> list[float]:
     """Fraction of non-white pixels in each column of ``band`` (0..1)."""
     mask = band.convert("L").point(lambda v: 255 if v < white_threshold else 0)
     profile = mask.resize((mask.width, 1), Image.Resampling.BOX)
-    return [v / 255 for v in profile.getdata()]
+    return [v / 255 for v in profile.tobytes()]
 
 
 def snap_boundaries(

@@ -88,12 +88,13 @@ class OpenAIImageFrameSource:
             "output_format": "png",
             "background": "opaque",
         }
+        client = self.client  # configuration errors surface as SettingsError, not as a failed call
         try:
             if self.reference_image is not None:
                 with self.reference_image.open("rb") as handle:
-                    response = self.client.images.edit(image=handle, input_fidelity="high", **params)
+                    response = client.images.edit(image=handle, input_fidelity="high", **params)
             else:
-                response = self.client.images.generate(moderation=self.moderation, **params)
+                response = client.images.generate(moderation=self.moderation, **params)
         except Exception as exc:  # openai.OpenAIError and transport errors alike
             raise FrameSourceError(f"{plan.exercise}: image generation failed: {exc}") from exc
 

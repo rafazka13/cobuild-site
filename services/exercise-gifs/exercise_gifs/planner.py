@@ -106,8 +106,9 @@ class KeyframePlanner:
         request = f"Exercise: {name}\nNumber of keyframes: {self.keyframe_count}"
         if hints:
             request += f"\nCoach notes: {hints}"
+        client = self.client  # configuration errors surface as SettingsError, not as a failed call
         try:
-            response = self.client.responses.parse(
+            response = client.responses.parse(
                 model=self.model,
                 instructions=PLANNER_INSTRUCTIONS,
                 input=request,
