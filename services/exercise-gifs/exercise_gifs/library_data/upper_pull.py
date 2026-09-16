@@ -774,7 +774,6 @@ EXERCISES = [
     {
         "name": "Shrug",
         "aliases": [
-            "shrug",
             "shrugs",
             "shoulder shrug",
             "shoulder shrugs",
@@ -901,7 +900,7 @@ EXERCISES = [
         "setting": "a plain gym floor, the athlete standing beside the free end of the bar with the body perpendicular to it",
         "loop": "pingpong",
         "keyframes": [
-            "staggered stance with the left foot forward and right foot back, torso hinged about 45 degrees with a flat back, right arm fully straight hanging to the bar end, left forearm braced on the left thigh",
+            "staggered stance with the left foot forward, torso hinged about 45 degrees with a flat back, right arm fully straight hanging down to the bar end, left forearm braced on the left thigh",
             "right elbow beginning to bend and flare outward, plate lifting a hand's width off the floor, torso and legs held still, left forearm on the thigh",
             "right elbow bent about 45 degrees and pointing out to the side, bar end level with the knee, forearm vertical, shoulder blade drawing back",
             "right elbow bent 90 degrees and lifted level with the torso, upper arm flared about 45 degrees from the body, bar end at mid-thigh, torso hinged and still",
@@ -978,7 +977,6 @@ EXERCISES = [
             "band pull a part",
             "band pull a parts",
             "pull apart band",
-            "band pull-apart hold",
             "band pull apart hold",
             "band pull aparts hold",
         ],
